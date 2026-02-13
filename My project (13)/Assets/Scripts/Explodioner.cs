@@ -3,24 +3,24 @@ using UnityEngine;
 
 public class Explodioner : MonoBehaviour
 {
-    [SerializeField] private CubeFabric _cubeFabric;
     [SerializeField] private float _exlosionForce = 10f;
+    [SerializeField] private CubeSpawner _cubeSpawner;
 
-    private float _exposionRadius = 0.5f;
+    private float _exposionRadius = 1f;
 
     private void OnEnable()
     {
-        _cubeFabric.CubeListsChanged += Explode;
+        _cubeSpawner.CubeListsChanged += Explode;
     }
 
     private void OnDisable()
     {
-        _cubeFabric.CubeListsChanged -= Explode;
+        _cubeSpawner.CubeListsChanged -= Explode;
     }
 
-    private void Explode(List<Rigidbody> rigidbodies, Vector3 position)
+    private void Explode(List<Rigidbody> cubeList, Vector3 position)
     {
-        foreach (Rigidbody body in rigidbodies)
+        foreach (Rigidbody body in cubeList)
         {
             body.AddExplosionForce(_exlosionForce, position, _exposionRadius, 0, ForceMode.Force);
         }

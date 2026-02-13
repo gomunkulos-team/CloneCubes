@@ -2,30 +2,18 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeFabric : MonoBehaviour
+public class CubeSpawner : MonoBehaviour
 {
-    [SerializeField] private InputHandeler _inputHandeler;
-
-    public event Action<List<Rigidbody>, Vector3> CubeListsChanged;
-
     private int _minCubQuantity = 2;
     private int _maxCubQuantity = 6;
     private float _scaleIndex = 0.5f;
-    private float _copyChanceIndex = 2;
+    private float _copyChanceMultiplier = 2;
 
     private List<Rigidbody> _cubeList = new List<Rigidbody>();
 
-    private void OnEnable()
-    {
-        _inputHandeler.CubeSelected += Copy;
-    }
+    public event Action<List<Rigidbody>, Vector3> CubeListsChanged;
 
-    private void OnDisable()
-    {
-        _inputHandeler.CubeSelected -= Copy;
-    }
-
-    private void Copy(BoomCube boomCube)
+    public void CopyCubes(BoomCube boomCube)
     {
         int numberOfCubes = UnityEngine.Random.Range(_minCubQuantity, _maxCubQuantity);
 
@@ -38,7 +26,7 @@ public class CubeFabric : MonoBehaviour
                 BoomCube copyCube = Instantiate(boomCube);
                 copyCube.transform.localScale *= _scaleIndex;
                 copyCube.Renderer.material.color = UnityEngine.Random.ColorHSV(0f, 1f, 0.7f, 1f, 0.7f, 1f);
-                copyCube.DecreaseCahceToCopy(_copyChanceIndex);
+                copyCube.DecreaseCahceToCopy(_copyChanceMultiplier);
 
                 Rigidbody rig = copyCube.GetComponent<Rigidbody>();
 
@@ -47,7 +35,5 @@ public class CubeFabric : MonoBehaviour
 
             CubeListsChanged?.Invoke(_cubeList, boomCube.transform.position);
         }
-
-        Destroy(boomCube.gameObject);
     }
 }
