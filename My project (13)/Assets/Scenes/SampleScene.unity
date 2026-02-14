@@ -762,6 +762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Splitter
   _raycaster: {fileID: 308251083}
   _cubeSpawner: {fileID: 76213127}
+  _explodioner: {fileID: 893325891}
 --- !u!4 &691985762
 Transform:
   m_ObjectHideFlags: 0
@@ -917,8 +918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a33233d37de8e50419d3361f88e698a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Explodioner
-  _exlosionForce: 10
-  _cubeSpawner: {fileID: 76213127}
+  _exlosionForce: 100
 --- !u!4 &893325892
 Transform:
   m_ObjectHideFlags: 0

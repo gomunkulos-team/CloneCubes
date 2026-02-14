@@ -8,14 +8,14 @@ public class BoomCube : MonoBehaviour
     public Renderer Renderer {  get; private set; }
     public float ChanceToCopy { get; private set; }
 
-    public void DecreaseCahceToCopy(float multiplier)
-    {
-        ChanceToCopy /= multiplier;
-    }
-
     private void Awake()
     {
         Renderer = GetComponent<Renderer>();
         ChanceToCopy = _chanceToCopy;
+    }
+
+    public void DecreaseCahceToCopy(float multiplier)
+    {
+        ChanceToCopy /= multiplier;
     }
 }

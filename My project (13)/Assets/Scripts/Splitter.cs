@@ -6,6 +6,7 @@ public class Splitter : MonoBehaviour
 {
     [SerializeField] private Raycaster _raycaster;
     [SerializeField] private CubeSpawner _cubeSpawner;
+    [SerializeField] private Explodioner _explodioner;
 
     private void OnEnable()
     {
@@ -21,7 +22,7 @@ public class Splitter : MonoBehaviour
     {
         if (cube.ChanceToCopy >= UnityEngine.Random.value)
         {
-            _cubeSpawner.CopyCubes(cube);
+            _explodioner.Explode( _cubeSpawner.CopyCubes(cube), cube.transform.position);
         }
 
         Destroy(cube.gameObject);
