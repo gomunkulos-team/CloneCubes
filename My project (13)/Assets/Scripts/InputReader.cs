@@ -8,7 +8,7 @@ public class InputReader : MonoBehaviour
 
     public void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-            MouseClicked?.Invoke(Mouse.current.position.ReadValue());
+        if (Input.GetMouseButtonDown(0))
+            MouseClicked?.Invoke(Input.mousePosition);
     }
 }
