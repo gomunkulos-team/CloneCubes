@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Exploision : MonoBehaviour
 {
-    float _baseExploisionRadius = 500;
-    float _explodionRadiusMultiplier = 1.5f;
+    float _baseExploisionRadius = 5;
+    float _explodionRadiusMultiplier = 2f;
 
     public List<Rigidbody> GetRigidbodies(BoomCube cube)
     {
@@ -16,8 +16,8 @@ public class Exploision : MonoBehaviour
 
         foreach (Collider collider in cubeColliders)
         {
-            collider.TryGetComponent(out Rigidbody cubeRigidbody);
-            cubesRigidbodyList.Add(cubeRigidbody);
+            if(collider.attachedRigidbody != null)
+                cubesRigidbodyList.Add(collider.attachedRigidbody);
         }
 
         return cubesRigidbodyList;

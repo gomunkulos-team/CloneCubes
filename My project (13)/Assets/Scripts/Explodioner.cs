@@ -15,11 +15,11 @@ public class Explodioner : MonoBehaviour
         }
     }
 
-    public void Explode(List<Rigidbody> cubeList, Vector3 position, float explosionRadius, float exlosionForce)
+    public void Explode(List<Rigidbody> cubeList, Vector3 position,  float exlosionForce)
     {
         foreach (Rigidbody body in cubeList)
         {
-            body.AddExplosionForce(exlosionForce, position, explosionRadius, 0, ForceMode.Impulse);
+            body.AddExplosionForce(exlosionForce, position, _baseExplosionRadius, 0, ForceMode.Impulse);
         }
     }
 }

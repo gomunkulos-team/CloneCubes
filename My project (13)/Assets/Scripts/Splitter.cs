@@ -8,8 +8,9 @@ public class Splitter : MonoBehaviour
     [SerializeField] private CubeSpawner _cubeSpawner;
     [SerializeField] private Explodioner _explodioner;
     [SerializeField] private Exploision _exploision;
+    [SerializeField] private float _basicExplosionForce = 10f;
 
-    private float _basicExplosionForce = 5f;
+    private float _explosionForceMultiplier = 2f;
 
     public event Action<BoomCube> CubeExploded;
 
@@ -42,12 +43,10 @@ public class Splitter : MonoBehaviour
         }
         else
         {
-            float explosionRadius = (200 * 1.5f) / cube.transform.localScale.y;
-            float exploisionForseMultiplier = 2;
-            float explodionForse = (_basicExplosionForce * exploisionForseMultiplier) / cube.transform.localScale.x;
+            float explodionForse = (_basicExplosionForce * _explosionForceMultiplier) / cube.transform.localScale.x;
 
             rigidbodyList = _exploision.GetRigidbodies(cube);
-            _explodioner.Explode(rigidbodyList, cube.transform.position, explosionRadius, explodionForse);
+            _explodioner.Explode(rigidbodyList, cube.transform.position, explodionForse);
         }
 
         Destroy(cube.gameObject);
