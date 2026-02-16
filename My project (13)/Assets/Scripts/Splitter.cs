@@ -7,12 +7,6 @@ public class Splitter : MonoBehaviour
     [SerializeField] private Raycaster _raycaster;
     [SerializeField] private CubeSpawner _cubeSpawner;
     [SerializeField] private Explodioner _explodioner;
-    [SerializeField] private Exploision _exploision;
-    [SerializeField] private float _basicExplosionForce = 10f;
-
-    private float _explosionForceMultiplier = 2f;
-
-    public event Action<BoomCube> CubeExploded;
 
     private void OnEnable()
     {
@@ -26,11 +20,11 @@ public class Splitter : MonoBehaviour
 
     private void TryToCopyCube(BoomCube cube)
     {
-        List<BoomCube> cubesList = new List<BoomCube>();
-        List<Rigidbody> rigidbodyList = new List<Rigidbody>();
-
         if (cube.ChanceToCopy >= UnityEngine.Random.value)
         {
+            List<BoomCube> cubesList = new List<BoomCube>();
+            List<Rigidbody> rigidbodyList = new List<Rigidbody>();
+
             cubesList = _cubeSpawner.SpawnCubes(cube);
 
             foreach (BoomCube buferCube in cubesList)
@@ -43,10 +37,7 @@ public class Splitter : MonoBehaviour
         }
         else
         {
-            float explodionForse = (_basicExplosionForce * _explosionForceMultiplier) / cube.transform.localScale.x;
-
-            rigidbodyList = _exploision.GetRigidbodies(cube);
-            _explodioner.Explode(rigidbodyList, cube.transform.position, explodionForse);
+            _explodioner.Explode(cube);
         }
 
         Destroy(cube.gameObject);
