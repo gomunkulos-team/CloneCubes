@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class BoomCube : MonoBehaviour
 {
     private float _chanceToCopy = 1;

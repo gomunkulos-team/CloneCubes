@@ -11,15 +11,15 @@ public class Raycaster : MonoBehaviour
 
     private void OnEnable()
     {
-        _inputReader.MouseClicked += GetObject;
+        _inputReader.MouseClicked += Raycast;
     }
 
     private void OnDisable()
     {
-        _inputReader.MouseClicked -= GetObject;
+        _inputReader.MouseClicked -= Raycast;
     }
 
-    private void GetObject(Vector3 position)
+    private void Raycast(Vector3 position)
     {
         Ray ray = Camera.main.ScreenPointToRay(position);
         RaycastHit hit;
