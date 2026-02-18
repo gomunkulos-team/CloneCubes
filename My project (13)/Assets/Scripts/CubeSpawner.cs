@@ -8,7 +8,7 @@ public class CubeSpawner : MonoBehaviour
     private float _scaleMultiplier = 0.5f;
     private float _copyChanceMultiplier = 2;
 
-    public List<BoomCube> SpawnCubes(BoomCube boomCube)
+    public List<BoomCube> SpawnRandomNumberOfCubes(BoomCube boomCube)
     {
         List<BoomCube> cubeRigidbodyList = new List<BoomCube>();
 
@@ -25,5 +25,10 @@ public class CubeSpawner : MonoBehaviour
         }
 
         return cubeRigidbodyList;
+    }
+
+    public void DestroyCube (BoomCube cube)
+    {
+        Destroy(cube.gameObject);
     }
 }

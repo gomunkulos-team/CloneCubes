@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SetRandomColor : MonoBehaviour
+public class RandomColor : MonoBehaviour
 {
     private Renderer _renderer;
 

@@ -25,12 +25,12 @@ public class Splitter : MonoBehaviour
             List<BoomCube> cubesList = new List<BoomCube>();
             List<Rigidbody> rigidbodyList = new List<Rigidbody>();
 
-            cubesList = _cubeSpawner.SpawnCubes(cube);
+            cubesList = _cubeSpawner.SpawnRandomNumberOfCubes(cube);
 
             foreach (BoomCube buferCube in cubesList)
             {
-                buferCube.TryGetComponent(out Rigidbody buferCubeRigidbody);
-                rigidbodyList.Add(buferCubeRigidbody);
+                if (buferCube.TryGetComponent(out Rigidbody buferCubeRigidbody))
+                    rigidbodyList.Add(buferCubeRigidbody);
             }
 
             _explodioner.Explode(rigidbodyList, cube.transform.position);
@@ -40,6 +40,6 @@ public class Splitter : MonoBehaviour
             _explodioner.Explode(cube);
         }
 
-        Destroy(cube.gameObject);
+        _cubeSpawner.DestroyCube(cube);
     }
 }

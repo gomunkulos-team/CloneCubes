@@ -22,9 +22,8 @@ public class Raycaster : MonoBehaviour
     private void Raycast(Vector3 position)
     {
         Ray ray = Camera.main.ScreenPointToRay(position);
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, _maxDistance))
+        if (Physics.Raycast(ray, out RaycastHit hit, _maxDistance))
         {
             if (hit.collider.TryGetComponent(out BoomCube cube))
             {
